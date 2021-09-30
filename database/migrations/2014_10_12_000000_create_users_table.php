@@ -18,7 +18,9 @@ class CreateUsersTable extends Migration
 			$table->string('email')->unique();
 			$table->string('password');
 			$table->enum('role', ['mentee', 'mentor', 'admin']);
-			$table->tinyInteger('is_verified')->length('1');
+			$table->tinyInteger('is_active')->length('1');
+			$table->tinyInteger('is_banned')->length('1');
+			$table->timestamp('email_verified_at')->nullable();
 			$table->rememberToken();
 			$table->timestamps();
 		});

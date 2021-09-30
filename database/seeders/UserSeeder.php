@@ -21,7 +21,9 @@ class UserSeeder extends Seeder
 				'email' => 'mentee@mail.com',
 				'password' => Hash::make('password'),
 				'role' => 'mentee',
-				'is_verified' => 1,
+				'is_active' => 1,
+				'is_banned' => 0,
+				'email_verified_at' => Carbon::now(),
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -29,7 +31,9 @@ class UserSeeder extends Seeder
 				'email' => 'mentor@mail.com',
 				'password' => Hash::make('password'),
 				'role' => 'mentor',
-				'is_verified' => 1,
+				'is_active' => 1,
+				'is_banned' => 0,
+				'email_verified_at' => Carbon::now(),
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -37,7 +41,9 @@ class UserSeeder extends Seeder
 				'email' => 'admin@mail.com',
 				'password' => Hash::make('password'),
 				'role' => 'admin',
-				'is_verified' => 1,
+				'is_active' => 1,
+				'is_banned' => 0,
+				'email_verified_at' => Carbon::now(),
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
