@@ -10,8 +10,9 @@
 		"production": "mix --production"
 	},
 	"devDependencies": {
+		"@supabase/supabase-js": "^1.28.0",
 		"autoprefixer": "^10.3.7",
-		"bootstrap": "^5.1.1",
+		"daisyui": "^1.16.2",
 		"laravel-mix": "^6.0.6",
 		"postcss": "^8.3.9",
 		"resolve-url-loader": "^4.0.0",
@@ -19,8 +20,5 @@
 		"sass-loader": "^12.1.0",
 		"tailwindcss": "^2.2.17"
 	},
-	"dependencies": {
-		"@supabase/supabase-js": "^1.28.0",
-		"daisyui": "^1.14.4"
-	}
+	"dependencies": {}
 }
