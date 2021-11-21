@@ -5,9 +5,9 @@ window.addEventListener('DOMContentLoaded', () => {
 	const fileUpload = document.getElementById("image");
 	formUpload.addEventListener("submit", function (e) {
 		e.preventDefault();
-		// const file = fileUpload.files[0];
-		// uploadFile(file);
-		downloadFile();
+		const file = fileUpload.files[0];
+		uploadFile(file);
+		// downloadFile();
 	});
 });
 
