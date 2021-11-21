@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="myTheme">
 
 	<head>
 		<meta charset="UTF-8">
@@ -7,61 +7,74 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Mentorku | Login</title>
 
-		<link rel="stylesheet" href="{{ asset('dist/user/css/bootstrap.css') }}">
-		<style>
-			body {
-				background-color: #F8F9FA
-			}
-
-		</style>
+		<link rel="stylesheet" href="{{ asset("dist/user/css/tailwind.css") }}">
 	</head>
 
 	<body>
-		<div class="container">
-			<div class="card mt-5 w-25 mx-auto">
-				<h5 class="card-header bg-primary text-center">Mentorku</h5>
-				<div class="card-body">
-					<form method="POST" action="{{ url('/login') }}">
+		<div class="mx-auto">
+			<div class="card w-96 shadow-lg mx-auto mt-16">
+				<div class="card-body border-3">
+					<h2 class="card-title">Masuk</h2>
+					<form method="POST" action="{{ url("/login") }}">
 						@csrf
-						<div class="form-group mb-3">
-							<label for="email" class="mb-2">{{ __('Email kamu') }}</label>
-							<input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-								placeholder="e.g name@example.com">
-							@error('email')
-								<small class="text-danger">{{ $message }}</small>
+						<div class="form-control">
+							<label for="email" class="label">
+								<span class="label-text">{{ __("Email kamu") }}</span>
+							</label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								placeholder="e.g mymail@mail.com"
+								class="input input-bordered @error("email") input-error @enderror"
+								value="{{ old("email") }}"
+							>
+							@error("email")
+								<label class="label">
+									<span class="label-text-alt text-red-500">{{ $message }}</span>
+								</label>
 							@enderror
 						</div>
-						<div class="form-group">
-							<label for="password" class="mb-2">{{ __('Password kamu') }}</label>
-							<input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
-								name="password" placeholder="********">
-							@error('password')
-								<small class="text-danger">{{ $message }}</small>
+						<div class="form-control">
+							<label for="password" class="label">
+								<span class="label-text">{{ __("Password kamu") }}</span>
+							</label>
+							<input
+								type="password"
+								id="password"
+								name="password"
+								placeholder="********"
+								class="input input-bordered @error("password") input-error @enderror"
+							>
+							@error("password")
+								<label class="label">
+									<span class="label-text-alt text-red-500">{{ $message }}</span>
+								</label>
 							@enderror
 						</div>
 
 						<!-- Remember Me -->
-						<div class="form-check mt-2">
-							<input class="form-check-input" type="checkbox" value="true" id="remember_me" name="remember" checked>
-							<label class="form-check-label" for="remember_me">
-								{{ __('Ingat saya') }}
+						<div class="form-control">
+							<label class="cursor-pointer label">
+								<span class="label-text">{{ __("Ingat saya") }}</span>
+								<input class="checkbox" type="checkbox" value="true" id="remember_me" name="remember" checked>
 							</label>
 						</div>
 
 						<div class="d-grid gap-2 mt-4 mx-auto">
-							<button type="submit" class="btn btn-primary btn-lg text-white py-2">Login</button>
+							<button type="submit" class="btn btn-primary btn-block text-white py-2">Login</button>
 						</div>
 
 						<p class="mt-4 text-center">
 							Belum mempunyai akun ?
-							<a href="{{ url('/register') }}">Buat akun</a>
+							<a class="link link-primary" href="{{ url("/register") }}">Buat akun</a>
 						</p>
 					</form>
 				</div>
 			</div>
 		</div>
 
-		<script src="{{ asset('dist/user/js/bootstrap.js') }}"></script>
+		{{-- <script src="{{ asset("dist/user/js/bootstrap.js") }}"></script> --}}
 	</body>
 
 </html>

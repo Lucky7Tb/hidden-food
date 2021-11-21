@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="myTheme">
 
 	<head>
 		<meta charset="UTF-8">
@@ -7,81 +7,82 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Mentorku | Register</title>
 
-		<link rel="stylesheet" href="{{ asset('dist/user/css/bootstrap.css') }}">
-		<style>
-			body {
-				background-color: #F8F9FA
-			}
+		<link rel="stylesheet" href="{{ asset("dist/user/css/tailwind.css") }}">
 
-		</style>
 	</head>
 
 	<body>
-		<div class="container">
-			<div class="card mt-5 w-25 mx-auto">
-				<h5 class="card-header bg-primary text-center">Mentorku</h5>
-				<div class="card-body">
-					<form method="POST" action="{{ url('/register') }}">
+		<div class="mx-auto">
+			<div class="card w-96 shadow-lg mx-auto mt-16">
+				<div class="card-body border-3">
+					<h2 class="card-title">Daftar</h2>
+					<form method="POST" action="{{ url("/register") }}">
 						@csrf
-						<div class="form-group mb-2">
-							<label for="email" class="mb-2">{{ __('Email kamu') }}</label>
-							<input
-								type="text"
-								class="form-control @error('email') is-invalid @enderror"
-								id="email"
-								name="email"
-								placeholder="e.g name@example.com"
-								value="{{ old('email') }}"
-							>
-							@error('email')
-								<small class="text-danger">{{ $message }}</small>
+						<div class="form-control">
+							<label for="email" class="label">
+								<span class="label-text">{{ __("Email kamu") }}</span>
+							</label>
+							<input type="email" id="email" name="email" placeholder="e.g mymail@mail.com"
+								class="input input-bordered @error("email") input-error @enderror"
+								value="{{ old("email") }}">
+							@error("email")
+								<label class="label">
+									<span class="label-text-alt text-danger">{{ $message }}</span>
+								</label>
 							@enderror
 						</div>
-						<div class="form-group mb-2">
-							<label for="password" class="mb-2">{{ __('Password kamu') }}</label>
-							<input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="********">
-							@error('password')
-								<small class="text-danger">{{ $message }}</small>
-							@enderror
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+							<div class="form-control">
+								<label for="password" class="label">
+									<span class="label-text">{{ __("Password kamu") }}</span>
+								</label>
+								<input type="password" id="password" name="password" placeholder="********"
+									class="input input-bordered @error("password") input-error @enderror">
+								@error("password")
+									<label class="label">
+										<span class="label-text-alt text-danger">{{ $message }}</span>
+									</label>
+								@enderror
+							</div>
+							<div class="form-control">
+								<label for="password" class="label">
+									<span class="label-text">{{ __("Konfirmasi password") }}</span>
+								</label>
+								<input type="password" id="password_confirmation" name="password_confirmation" placeholder="********"
+									class="input input-bordered @error("password") input-error @enderror">
+								@error("password")
+									<label class="label">
+										<span class="label-text-alt text-danger">{{ $message }}</span>
+									</label>
+								@enderror
+							</div>
 						</div>
-						<div class="form-group mb-2">
-							<label for="password_confirmation" class="mb-2">{{ __('Konfirmasi password kmu') }}</label>
-							<input type="password" class="form-control @error('password') is-invalid @enderror" id="password_confirmation" name="password_confirmation" placeholder="********">
-							@error('password')
-								<small class="text-danger">{{ $message }}</small>
-							@enderror
-						</div>
-						<div class="form-group mb-2">
-							<label for="role mb-2">Mau jadi apa?</label>
-							<select
-								class="form-select @error('role') is-invalid @enderror"
-								size="2"
-								name="role"
-								value={{ old('role') }}
-							>
-								<option value="mentor">Mentor</option>
-								<option value="mentee">Mentee</option>
-							</select>
-							@error('role')
-								<small class="text-danger">{{ $message }}</small>
-							@enderror
-						</div>
-						<div class="d-grid gap-2 mx-auto">
-							<button type="submit" class="btn btn-primary btn-lg text-white py-2">
-								Login
-							</button>
+
+						<select class="select select-bordered w-full @error("role") select-error @enderror max-w-xs mt-3" name="role">
+							<option disabled="disabled" selected="selected">Pilih tipe akun</option>
+							<option value="mentee">Mentee</option>
+							<option value="mentor">Mentor</option>
+						</select>
+						@error("role")
+							<label class="label">
+								<span class="label-text-alt text-danger">{{ $message }}</span>
+							</label>
+						@enderror
+
+						<div class="d-grid gap-2 mt-4 mx-auto">
+							<button type="submit" class="btn btn-primary btn-block text-white py-2">Daftar</button>
 						</div>
 
 						<p class="mt-4 text-center">
-							Sudah punya akun ?
-							<a href="{{ url('/login') }}">Login disini</a>
+							sudah mempunyai akun ?
+							<a class="link link-primary" href="{{ url("/login") }}">Masuk</a>
 						</p>
 					</form>
 				</div>
 			</div>
 		</div>
-
-		<script src="{{ asset('dist/user/js/bootstrap.js') }}"></script>
+		{{-- <script src="{{ asset("dist/user/js/bootstrap.js") }}"></script>
+		--}}
 	</body>
 
 </html>

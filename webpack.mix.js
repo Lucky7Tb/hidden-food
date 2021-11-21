@@ -2,5 +2,6 @@ const mix = require('laravel-mix');
 
 mix
 	.setPublicPath('public/dist/user')
-	.js('resources/js/bootstrap.js', 'js')
-	.sass('resources/scss/bootstrap.scss', 'css')
+	.js('resources/js/app.js', 'js')
+	.js('resources/js/supabase.js', 'js')
+	.postCss('resources/css/tailwind.css', 'css', [require('tailwindcss')]);

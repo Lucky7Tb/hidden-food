@@ -1,7 +1,7 @@
 <div class="main-sidebar">
 	<aside id="sidebar-wrapper">
 		<div class="sidebar-brand">
-			<a href="{{ url('/admin') }}">Mentorku</a>
+			<a href="{{ url('/admin') }}">Hidden Food</a>
 		</div>
 		<div class="sidebar-brand sidebar-brand-sm">
 			<a href="{{ url('/admin') }}">Mt</a>
