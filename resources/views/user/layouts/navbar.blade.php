@@ -10,7 +10,7 @@
 				<i class="mr-2 bi bi-house-fill"></i> Beranda
 			</a>
 			<a href="{{ url("/create") }}">
-				<i class="mr-2 bi bi-search"></i> Tambah rekomendasi
+				<i class="mr-2 bi bi-search"></i> Rekomendasiin
 			</a>
 		</div>
 	</div>
