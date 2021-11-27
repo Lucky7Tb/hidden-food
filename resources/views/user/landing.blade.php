@@ -1,25 +1,19 @@
 @extends('user.layouts.app')
 
+@push('css')
+	<link rel="stylesheet" href="{{ asset('dist/library/leaflet/leaflet.css') }}" />
+	<script src="{{ asset('dist/library/leaflet/leaflet.js') }}"></script>
+@endpush
+
 @section('content')
-	<x-leaflet></x-leaflet>
+	<div id="map" class="h-screen">
+		<div class="absolute w-full grid place-items-center" style="z-index: 401">
+			<button type="buttons" class="btn btn-success left-1/2 right-1/2" id="btn-search-hidden-food">Cari sekitar sini</button>
+		</div>
+	</div>
 @endsection
 
 @push('js')
-	<script>
-		const mymap = L.map("map").setView([51.505, -0.09], 13);
-
-		L.tileLayer(
-			"https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=" +
-				"{{ env('LEAFTLET_ACCESS_TOKEN') }}",
-			{
-				attribution:
-					'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-				maxZoom: 18,
-				id: "mapbox/streets-v11",
-				tileSize: 512,
-				zoomOffset: -1,
-				accessToken: "{{ env('LEAFTLET_ACCESS_TOKEN') }}",
-			}
-		).addTo(mymap);
-	</script>
+	<script src="{{ asset('dist/library/leaflet/leaflet-geo-plugin.js') }}"></script>
+	<script src="{{ asset('dist/user/js/app.js') }}"></script>
 @endpush

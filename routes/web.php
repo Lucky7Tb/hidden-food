@@ -6,6 +6,7 @@ Route::prefix('/')->group(function () {
 	Route::view('/', 'user.landing');
 	Route::view('/create', 'user.create');
 	Route::post('/create', [\App\Http\Controllers\HiddenFoodController::class, 'create']);
+	Route::put('/update-thumbnail/{hiddenFood}', [\App\Http\Controllers\HiddenFoodController::class, 'updateThumbnail']);
 });
 
 Route::prefix('admin')->group(function () {

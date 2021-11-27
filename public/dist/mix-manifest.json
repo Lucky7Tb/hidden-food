@@ -1,0 +1,7 @@
+{
+    "/user/js/app.js": "/user/js/app.js",
+    "/user/js/create.js": "/user/js/create.js",
+    "/library/leaflet/leaflet-geo-plugin.js": "/library/leaflet/leaflet-geo-plugin.js",
+    "/library/supabase/supabase.js": "/library/supabase/supabase.js",
+    "/user/css/tailwind.css": "/user/css/tailwind.css"
+}
