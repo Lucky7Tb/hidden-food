@@ -1,5 +1,12 @@
- <footer class="main-footer">
- 	<div class="footer-left">
- 		Copyright &copy; 2021 <div class="bullet"></div> Created By <a href="#">Hidden Food</a>
- 	</div>
- </footer>
+<footer class="py-4 bg-light mt-auto">
+	<div class="container-fluid px-4">
+		<div class="d-flex align-items-center justify-content-between small">
+			<div class="text-muted">Copyright &copy; Your Website 2021</div>
+			<div>
+				<a href="#">Privacy Policy</a>
+				&middot;
+				<a href="#">Terms &amp; Conditions</a>
+			</div>
+		</div>
+	</div>
+</footer>

@@ -46,7 +46,6 @@ class LoginRequest extends FormRequest
 		$this->ensureIsNotRateLimited();
 
 		$credentials = $this->only('email', 'password');
-		$credentials['is_banned'] = 0;
 
 		if (!Auth::attempt($credentials, $this->boolean('remember'))) {
 			RateLimiter::hit($this->throttleKey());

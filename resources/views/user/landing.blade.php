@@ -8,7 +8,7 @@
 @section('content')
 	<div id="map" class="h-screen">
 		<div class="absolute w-full grid place-items-center" style="z-index: 401">
-			<button type="buttons" class="btn btn-success left-1/2 right-1/2" id="btn-search-hidden-food">Cari sekitar sini</button>
+			<button type="buttons" class="btn btn-primary btn-md mt-4 left-1/2 right-1/2" id="btn-search-hidden-food">Cari sekitar sini</button>
 		</div>
 	</div>
 @endsection

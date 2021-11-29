@@ -22,14 +22,7 @@ class AuthenticatedSessionController extends Controller
 
 		$request->session()->regenerate();
 
-		switch(Auth::user()->role) {
-			case 'mentor':
-				return redirect()->intended('/mentor');
-			case 'mentee':
-				return redirect()->intended('/mentee');
-			default:
-				return redirect()->intended('/admin');
-		}
+		return redirect()->intended('/admin');
 	}
 
 	/**

@@ -1,14 +1,26 @@
-<div class="main-sidebar">
-	<aside id="sidebar-wrapper">
-		<div class="sidebar-brand">
-			<a href="{{ url('/admin') }}">Hidden Food</a>
-		</div>
-		<div class="sidebar-brand sidebar-brand-sm">
-			<a href="{{ url('/admin') }}">Mt</a>
-		</div>
-		<ul class="sidebar-menu">
-			<li><a class="nav-link" href="{{ url('/admin') }}"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-			<li><a class="nav-link" href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
-		</ul>
-	</aside>
-</div>
+<div id="layoutSidenav">
+	<div id="layoutSidenav_nav">
+		<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+			<div class="sb-sidenav-menu">
+				<div class="nav">
+					<div class="sb-sidenav-menu-heading">Core</div>
+					<a class="nav-link" href="index.html">
+						<div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+						Dashboard
+					</a>
+					<a class="nav-link" href="index.html">
+						<div class="sb-nav-link-icon"><i class="fas fa-user-shield"></i></div>
+						Admin
+					</a>
+					<a class="nav-link" href="index.html">
+						<div class="sb-nav-link-icon"><i class="fas fa-utensils"></i></div>
+						Hidden Food
+					</a>
+				</div>
+			</div>
+			<div class="sb-sidenav-footer">
+				<div class="small">Logged in as:</div>
+				Start Bootstrap
+			</div>
+		</nav>
+	</div>
