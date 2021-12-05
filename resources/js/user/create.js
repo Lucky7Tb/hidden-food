@@ -87,7 +87,6 @@ $(function () {
 			contentType: false,
 			processData: false,
 			success: async function (result) {
-				console.log(result.data.id);
 				const linkThumbnail = await uploadThumbnail($("#thumbnail")[0].files[0]);
 				if (linkThumbnail !== null) {
 					updateHiddenFoodThumbnail(result.data.id, linkThumbnail);

@@ -58,6 +58,16 @@ function getHiddenFoodData() {
 	});
 }
 
+async function deleteThumbnail(thumbnail) {
+	const fileName = thumbnail.split("hidden-food-picture/thumbnail/")[1];
+
+	const { error } = await supabase.storage
+		.from("hidden-food-picture")
+		.remove([`thumbnail/${fileName}`]);
+
+	return error == null;
+}
+
 $(function () {
 	getHiddenFoodData();
 
@@ -75,6 +85,9 @@ $(function () {
 					}, 1500);
 				} else {
 					toastr.error("Gagal menghapus thumbnail tempat makan", "Error!");
+					setTimeout(() => {
+						window.location.href = "/admin";
+					}, 1500);
 				}
 			},
 			error: function (error) {
