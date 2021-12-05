@@ -40,7 +40,7 @@ function getDetailHiddenFood() {
 			$("#detail_address").html(data.detail_address);
 			$("#thumbnail").attr(
 				"src",
-				"https://ccbzidgtbnectbxdhvtk.supabase.in/storage/v1/object/public/" +
+				"https://ccbzidgtbnectbxdhvtk.supabase.in/storage/v1/object/public/hidden-food-picture/thumbnail/" +
 					data.thumbnail
 			);
 
