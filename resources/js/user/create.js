@@ -79,7 +79,7 @@ $(function () {
 	function createHiddenFood(formData) {
 		$.ajax({
 			type: "POST",
-			url: $("#form-recomendation").attr("action"),
+			url: "/api/hidden-food",
 			headers: {
 				"X-CSRF-TOKEN": $("meta[name=csrf-token").attr("content"),
 			},
@@ -113,7 +113,7 @@ $(function () {
 	function updateHiddenFoodThumbnail(id, thumbnail) {
 		$.ajax({
 			type: "PUT",
-			url: `/update-thumbnail/${id}`,
+			url: `/api/hidden-food/${id}/update-thumbnail/`,
 			headers: {
 				"X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
 			},
@@ -124,7 +124,7 @@ $(function () {
 			}),
 			success: function () {
 				toastr.success("Berhasil menambah rekomendasi nih :)", "Success!");
-				setTimeout(() => window.location.href = "/", 1500);
+				setTimeout(() => (window.location.href = "/"), 1500);
 			},
 			error: function (error) {
 				toastr.error("Wah ada error sama server nya nih :(", "Error!");

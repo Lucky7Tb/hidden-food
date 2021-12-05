@@ -2,6 +2,7 @@
 
 @push('css')
 	<link rel="stylesheet" href="{{ asset('dist/library/leaflet/leaflet.css') }}" />
+	<link rel="stylesheet" href="{{ asset('dist/library/toasr/toastr.min.css') }}">
 	<script src="{{ asset('dist/library/leaflet/leaflet.js') }}"></script>
 @endpush
 
@@ -15,5 +16,6 @@
 
 @push('js')
 	<script src="{{ asset('dist/library/leaflet/leaflet-geo-plugin.js') }}"></script>
+	<script src="{{ asset('dist/library/toasr/toastr.min.js') }}"></script>
 	<script src="{{ asset('dist/user/js/app.js') }}"></script>
 @endpush

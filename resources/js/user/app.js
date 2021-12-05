@@ -14,10 +14,7 @@ const searchControl = new GeoSearchControl({
 	searchLabel: "Mau cari sekitar daerah mana ?",
 });
 
-const hiddenFoodCoorData = [
-	[-6.921256431043179, 107.5632118733507],
-	[-6.889741001220134, 107.68474484094975],
-];
+const hiddenFoodData = [];
 
 const hiddenFoodMarkers = [];
 
@@ -73,27 +70,50 @@ function initMap() {
 		mapSearchMarker.setLatLng([lat, lng]);
 	});
 
-	mapSearchMarker.on("dragend", () => {
-		const { lat, lng } = mapSearchMarker.getLatLng();
-	});
+	// mapSearchMarker.on("dragend", () => {
+	// 	const { lat, lng } = mapSearchMarker.getLatLng();
+	// });
+}
 
-	hiddenFoodCoorData.forEach((coor) => {
-		const marker = L.marker(coor, {
-			alt: "Marker",
-			icon: L.icon({
-				iconUrl:
-					"https://ccbzidgtbnectbxdhvtk.supabase.in/storage/v1/object/public/hidden-food-picture/assets/icons8-fork-64.png",
-				iconSize: [48, 48],
-			}),
-		});
+function getAllHiddenFood() {
+	$.ajax({
+		type: "GET",
+		url: "/api/hidden-food?status=ACTIVE",
+		success: function (response) {
+			const data = response.data;
+			data.forEach((hiddenFoodCoor) => {
+				const marker = L.marker([hiddenFoodCoor.lat, hiddenFoodCoor.long], {
+					alt: "Marker",
+					icon: L.icon({
+						iconUrl:
+							"https://ccbzidgtbnectbxdhvtk.supabase.in/storage/v1/object/public/hidden-food-picture/assets/icons8-fork-64.png",
+						iconSize: [48, 48],
+					}),
+				});
 
-		hiddenFoodMarkers.push(marker);
-		myMap.addLayer(marker);
+				marker.bindPopup(`
+					<div class="flex flex-col space-y-3">
+						<span><b>Nama: </b>${hiddenFoodCoor.name}</span>
+						<span class="truncate">
+							<b>Alamat: </b>${hiddenFoodCoor.address}
+						</span>
+						<span class="text-center"><a href="/detail/${hiddenFoodCoor.id}" class="btn btn-xs btn-link">Detail</a></span>
+					</div>
+				`)
+
+				hiddenFoodMarkers.push(marker);
+				myMap.addLayer(marker);
+			});
+		},
+		error: function () {
+			toastr.error("Wah ada error sama server nya nih :(", "Error!");
+		},
 	});
 }
 
 $(function () {
 	initMap();
+	getAllHiddenFood();
 
 	$("#btn-search-hidden-food").on("click", () => {
 		hiddenFoodMarkers.forEach((marker) => {

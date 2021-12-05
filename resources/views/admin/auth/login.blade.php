@@ -22,21 +22,28 @@
 										<h3 class="text-center font-weight-light my-4">Login</h3>
 									</div>
 									<div class="card-body">
-										<form>
+										<form method="POST" action="{{ url('/login') }}">
+											@csrf
 											<div class="form-floating mb-3">
-												<input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+												<input class="form-control @error('email') is-invalid @enderror" id="inputEmail" type="email" placeholder="name@example.com" name="email" value="{{ old('email') }}" required/>
 												<label for="inputEmail">Email</label>
+												@error('email')
+													<small class="text-danger">{{ $message }}</small>
+												@enderror
 											</div>
 											<div class="form-floating mb-3">
-												<input class="form-control" id="inputPassword" type="password" placeholder="Password" />
+												<input class="form-control @error('password') is-invalid @enderror" id="inputPassword" type="password" placeholder="Password" name="password" required/>
 												<label for="inputPassword">Password</label>
+												@error('password')
+													<small class="text-danger">{{ $message }}</small>
+												@enderror
 											</div>
 											<div class="form-check mb-3">
-												<input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
+												<input class="form-check-input" id="inputRememberPassword" type="checkbox" value="true" name="remember" checked/>
 												<label class="form-check-label" for="inputRememberPassword">Remember Password</label>
 											</div>
 											<div class="d-grid gap-1 mt-4 mb-0">
-												<a class="btn btn-primary rounded" href="index.html">Login</a>
+												<button type="submit" class="btn btn-primary rounded">Login</button>
 											</div>
 										</form>
 									</div>

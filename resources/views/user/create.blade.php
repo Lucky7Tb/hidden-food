@@ -8,8 +8,8 @@
 @endpush
 
 @section('content')
-	<div class="container px-52">
-		<form action="{{ url('/create') }}" method="POST" id="form-recomendation">
+	<div class="px-52">
+		<form method="POST" id="form-recomendation">
 			<div class="flex flex-col w-full space-y-1.5">
 				<div class="flex-auto form-control">
 					<label class="label" for="name">

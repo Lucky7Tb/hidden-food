@@ -4,7 +4,7 @@
 			<div class="sb-sidenav-menu">
 				<div class="nav">
 					<div class="sb-sidenav-menu-heading">Core</div>
-					<a class="nav-link" href="index.html">
+					<a class="nav-link" href="{{ url('/admin') }}">
 						<div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
 						Dashboard
 					</a>
@@ -12,15 +12,15 @@
 						<div class="sb-nav-link-icon"><i class="fas fa-user-shield"></i></div>
 						Admin
 					</a>
-					<a class="nav-link" href="index.html">
-						<div class="sb-nav-link-icon"><i class="fas fa-utensils"></i></div>
-						Hidden Food
+					<a class="nav-link" href="{{ url('/logout') }}">
+						<div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+						Logout
 					</a>
 				</div>
 			</div>
 			<div class="sb-sidenav-footer">
 				<div class="small">Logged in as:</div>
-				Start Bootstrap
+				{{ auth()->user()->email }}
 			</div>
 		</nav>
 	</div>

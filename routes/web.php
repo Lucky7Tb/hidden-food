@@ -5,8 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/')->group(function () {
 	Route::view('/', 'user.landing');
 	Route::view('/create', 'user.create');
-	Route::post('/create', [\App\Http\Controllers\HiddenFoodController::class, 'create']);
-	Route::put('/update-thumbnail/{hiddenFood}', [\App\Http\Controllers\HiddenFoodController::class, 'updateThumbnail']);
+	Route::view('/detail/{id}', 'user.detail');
 });
 
 Route::prefix('admin')->group(function () {
@@ -14,6 +13,7 @@ Route::prefix('admin')->group(function () {
 
 	Route::middleware(['auth'])->group(function () {
 		Route::view('/', 'admin.dashboard');
+		Route::view('/hidden-food/{id}', 'admin.edit');
 	});
 });
 
