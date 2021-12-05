@@ -41,7 +41,7 @@ function getHiddenFoodData() {
 			const { data } = response;
 			$("#thumbnail").attr(
 				"src",
-				"https://ccbzidgtbnectbxdhvtk.supabase.in/storage/v1/object/public/" +
+				"https://ccbzidgtbnectbxdhvtk.supabase.in/storage/v1/object/public/hidden-food-picture/thumbnail/" +
 					data.thumbnail
 			);
 			$("#name").val(data.name);
@@ -59,11 +59,9 @@ function getHiddenFoodData() {
 }
 
 async function deleteThumbnail(thumbnail) {
-	const fileName = thumbnail.split("hidden-food-picture/thumbnail/")[1];
-
 	const { error } = await supabase.storage
 		.from("hidden-food-picture")
-		.remove([`thumbnail/${fileName}`]);
+		.remove([`thumbnail/${thumbnail}`]);
 
 	return error == null;
 }

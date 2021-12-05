@@ -11,7 +11,7 @@ $(function () {
 			{
 				render: (_, __, data) => {
 					return `
-					<div style="width: 64px; height: 64px; background-image: url('https://ccbzidgtbnectbxdhvtk.supabase.in/storage/v1/object/public/${data.thumbnail}'); background-size: cover; background-repeat: no-repeat;margin: 0 auto">
+					<div style="width: 64px; height: 64px; background-image: url('https://ccbzidgtbnectbxdhvtk.supabase.in/storage/v1/object/public/hidden-food-picture/thumbnail/${data.thumbnail}'); background-size: cover; background-repeat: no-repeat;margin: 0 auto">
 					</div>
 				`;
 				},

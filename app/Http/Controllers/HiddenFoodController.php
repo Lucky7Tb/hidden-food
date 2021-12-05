@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateHiddenFoodRequest;
 use App\Models\HiddenFood;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Helpers\Helpers;
 
 class HiddenFoodController extends Controller
 {
@@ -50,11 +51,15 @@ class HiddenFoodController extends Controller
 	public function createHiddenFood(CreateHiddenFoodRequest $request)
 	{
 		try {
+
 			$data = $request->validated();
+			$file = $request->file('thumbnail');
+
 			$hiddenFood = new HiddenFood();
 			$hiddenFood->name = $data['name'];
 			$hiddenFood->address = $data['address'];
 			$hiddenFood->detail_address = $data['detail_address'];
+			$hiddenFood->thumbnail = Helpers::randomString().'.'.$file->extension();
 			$hiddenFood->lat = $data['lat'];
 			$hiddenFood->long = $data['long'];
 			$hiddenFood->created_at = Carbon::now();

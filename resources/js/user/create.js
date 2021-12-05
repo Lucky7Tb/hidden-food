@@ -87,9 +87,12 @@ $(function () {
 			contentType: false,
 			processData: false,
 			success: async function (result) {
-				const linkThumbnail = await uploadThumbnail($("#thumbnail")[0].files[0]);
+				const linkThumbnail = await uploadThumbnail($("#thumbnail")[0].files[0], result.data.thumbnail);
 				if (linkThumbnail !== null) {
-					updateHiddenFoodThumbnail(result.data.id, linkThumbnail);
+					toastr.success("Berhasil merekomendasikan", "Success!");
+					setTimeout(() => {
+						window.location.href = '/';
+					}, 1500);
 				} else {
 					toastr.error("Wah ada error sama server nya nih :(", "Error!");
 				}
@@ -131,12 +134,7 @@ $(function () {
 		});
 	}
 
-	async function uploadThumbnail(file) {
-		const date = new Date();
-		let fileName = `${date.getDate()}${date.getMonth()}${date.getFullYear()}${date.getMilliseconds()}`;
-
-		fileName += `.${file.type.split("/")[1]}`;
-
+	async function uploadThumbnail(file, fileName) {
 		const { data, error } = await supabase.storage
 			.from("hidden-food-picture")
 			.upload(`thumbnail/${fileName}`, file, {
