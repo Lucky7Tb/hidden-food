@@ -10,4 +10,9 @@ class Helpers
 	{
 		return Str::random($length);
 	}
+
+	public static function splitString($string, $delimiter)
+	{
+		return Str::of($string)->explode($delimiter);
+	}
 }

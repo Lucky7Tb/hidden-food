@@ -2,24 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateHiddenFoodRequest;
-use App\Http\Requests\UpdateHiddenFoodRequest;
-use App\Models\HiddenFood;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Helpers\Helpers;
+use App\Models\HiddenFood;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CreateHiddenFoodRequest;
+use App\Http\Requests\UpdateHiddenFoodRequest;
 
 class HiddenFoodController extends Controller
 {
 	public function getAllHiddenFood(Request $request)
 	{
 		try {
-			$hiddenFood = HiddenFood::orderBy("status", "desc");
-			if ($request->get('status')) {
-				$hiddenFood = $hiddenFood->where("status", $request->get("status"));
-			}
+			$hiddenFood = [];
 
-			$hiddenFood = $hiddenFood->get();
+			if ($request->get('coor')) {
+				$lastId = 0;
+				$centerCoor = Helpers::splitString($request->get('coor'), ',');
+				$places = DB::table('hidden_foods')->where("id", ">", $lastId)->limit(30)->get();
+				if (count($places) > 0) {
+					foreach ($places as $place) {
+						$targetCoor = [$place->lat, $place->long];
+						$distance = $this->haversineFormula($centerCoor, $targetCoor);
+
+						if ($distance <= 10.00) {
+							$hiddenFood[] = $place;
+						}
+					}
+				}
+			} else {
+				$hiddenFood = HiddenFood::orderBy("status", "desc")->get();
+			}
 
 			return response()->json([
 				"message" => "Success get hidden food",
@@ -133,5 +147,25 @@ class HiddenFoodController extends Controller
 				"data" => []
 			], 500);
 		}
+	}
+
+	private function haversineFormula($centerCoor, $targetCoor)
+	{
+		$earthRadius = 6371;
+		$latFrom = deg2rad($centerCoor[0]);
+		$longFrom = deg2rad($centerCoor[1]);
+		$latTarget = deg2rad($targetCoor[0]);
+		$longTarget= deg2rad($targetCoor[1]);
+
+		$a = $this->hav($latTarget - $latFrom) + (1 - $this->hav($latTarget - $latFrom) - $this->hav($latTarget + $latFrom)) * $this->hav($longTarget - $longFrom);
+
+		$d = 2 * $earthRadius * asin(sqrt($a));
+
+		return $d;
+	}
+
+	private function hav($angle)
+	{
+		return pow(sin($angle / 2), 2);
 	}
 }

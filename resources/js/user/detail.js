@@ -9,7 +9,6 @@ function initMap() {
 
 	mapSearchMarker = L.marker(position, {
 		alt: "Marker",
-		draggable: true,
 	}).addTo(myMap);
 
 	L.tileLayer(

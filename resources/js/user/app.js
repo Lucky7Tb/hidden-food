@@ -14,8 +14,6 @@ const searchControl = new GeoSearchControl({
 	searchLabel: "Mau cari sekitar daerah mana ?",
 });
 
-const hiddenFoodData = [];
-
 const hiddenFoodMarkers = [];
 
 const position = [-6.919254047160112, 107.61101714037947];
@@ -75,10 +73,10 @@ function initMap() {
 	// });
 }
 
-function getAllHiddenFood() {
+function getAllHiddenFood(coor = position) {
 	$.ajax({
 		type: "GET",
-		url: "/api/hidden-food?status=ACTIVE",
+		url: `/api/hidden-food?coor=${coor[0]},${coor[1]}`,
 		success: function (response) {
 			const data = response.data;
 			data.forEach((hiddenFoodCoor) => {
@@ -99,7 +97,7 @@ function getAllHiddenFood() {
 						</span>
 						<span class="text-center"><a href="/detail/${hiddenFoodCoor.id}" class="btn btn-xs btn-link">Detail</a></span>
 					</div>
-				`)
+				`);
 
 				hiddenFoodMarkers.push(marker);
 				myMap.addLayer(marker);
@@ -116,8 +114,10 @@ $(function () {
 	getAllHiddenFood();
 
 	$("#btn-search-hidden-food").on("click", () => {
+		const { lat, lng } = mapSearchMarker.getLatLng();
 		hiddenFoodMarkers.forEach((marker) => {
 			myMap.removeLayer(marker);
 		});
+		getAllHiddenFood([lat, lng]);
 	});
 });
