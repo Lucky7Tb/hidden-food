@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-<div class="px-52">
+<div class="px:15 sm:px-52">
 	<section class="mt-10 hero container mx-auto pb-10">
 		<img id="thumbnail" class="block mx-auto">
 	</section>

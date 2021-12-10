@@ -18,6 +18,8 @@
 			@yield("content")
 		</main>
 
+		@include('user.layouts.bottom-bar')
+
 		<script src="{{ asset('dist/library/jquery/jquery.js') }}"></script>
 		@stack("js")
 	</body>

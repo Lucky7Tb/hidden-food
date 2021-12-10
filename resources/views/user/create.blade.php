@@ -8,10 +8,10 @@
 @endpush
 
 @section('content')
-	<div class="px-52">
+	<div class="px-10 sm:px-52">
 		<form method="POST" id="form-recomendation">
 			<div class="flex flex-col w-full space-y-1.5">
-				<div class="flex-auto form-control">
+				<div class="flex form-control w-full">
 					<label class="label" for="name">
 						<span class="label-text">Nama tempat makan</span>
 					</label>
