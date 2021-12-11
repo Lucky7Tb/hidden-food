@@ -67,16 +67,15 @@ function initMap() {
 		const { y: lat, x: lng } = e.location;
 		mapSearchMarker.setLatLng([lat, lng]);
 	});
-
-	// mapSearchMarker.on("dragend", () => {
-	// 	const { lat, lng } = mapSearchMarker.getLatLng();
-	// });
 }
 
 function getAllHiddenFood(coor = position) {
 	$.ajax({
 		type: "GET",
 		url: `/api/hidden-food?coor=${coor[0]},${coor[1]}`,
+		beforeSend: function () {
+			$("#btn-search-hidden-food").addClass("loading");
+		},
 		success: function (response) {
 			const data = response.data;
 			data.forEach((hiddenFoodCoor) => {
@@ -106,6 +105,9 @@ function getAllHiddenFood(coor = position) {
 		error: function () {
 			toastr.error("Wah ada error sama server nya nih :(", "Error!");
 		},
+		complete: function () {
+			$("#btn-search-hidden-food").removeClass("loading");
+		}
 	});
 }
 

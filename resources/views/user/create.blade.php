@@ -1,7 +1,7 @@
 @extends('user.layouts.app')
 
 @push('css')
-	<link rel="stylesheet" href="{{ asset('dist/library/dropify/css/dropify.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('dist/library/dropify/css/dropify.css') }}">
 	<link rel="stylesheet" href="{{ asset('dist/library/leaflet/leaflet.css') }}" />
 	<link rel="stylesheet" href="{{ asset('dist/library/toasr/toastr.min.css') }}">
 	<script src="{{ asset('dist/library/leaflet/leaflet.js') }}"></script>
@@ -29,7 +29,7 @@
 					</label>
 					<textarea name="detail_address" id="detail_address" class="input input-bordered" placeholder="Di depan patokan"></textarea>
 				</div>
-				<div>
+				<div class="flex-auto form-control">
 					<label class="label" for="thumbnail">
 						<span class="label-text">Foto tempat makan</span>
 					</label>
@@ -40,7 +40,7 @@
 					<div id="map" class="h-full mt-5"></div>
 				</div>
 				<div>
-					<button class="btn btn-primary w-full rounded-full mt-20 mb-20">Submit</button>
+					<button type="submit" class="btn btn-primary w-full rounded-full mt-20 mb-20">Submit</button>
 				</div>
 			</div>
 		</form>
@@ -49,7 +49,7 @@
 
 @push('js')
 	<script src="{{ asset('dist/library/leaflet/leaflet-geo-plugin.js') }}"></script>
-	<script src="{{ asset('dist/library/dropify/js/dropify.min.js') }}"></script>
+	<script src="{{ asset('dist/library/dropify/js/dropify.js') }}"></script>
 	<script src="{{ asset('dist/library/toasr/toastr.min.js') }}"></script>
 	<script src="{{ asset('dist/user/js/create.js') }}"></script>
 @endpush

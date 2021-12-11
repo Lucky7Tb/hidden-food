@@ -86,12 +86,18 @@ $(function () {
 			data: formData,
 			contentType: false,
 			processData: false,
+			beforeSend: function () {
+				$("button[type=submit]").addClass("loading");
+			},
 			success: async function (result) {
-				const linkThumbnail = await uploadThumbnail($("#thumbnail")[0].files[0], result.data.thumbnail);
+				const linkThumbnail = await uploadThumbnail(
+					$("#thumbnail")[0].files[0],
+					result.data.thumbnail
+				);
 				if (linkThumbnail !== null) {
 					toastr.success("Berhasil merekomendasikan", "Success!");
 					setTimeout(() => {
-						window.location.href = '/';
+						window.location.href = "/";
 					}, 1500);
 				} else {
 					toastr.error("Wah ada error sama server nya nih :(", "Error!");
@@ -109,27 +115,8 @@ $(function () {
 						break;
 				}
 			},
-		});
-	}
-
-	function updateHiddenFoodThumbnail(id, thumbnail) {
-		$.ajax({
-			type: "PUT",
-			url: `/api/hidden-food/${id}/update-thumbnail/`,
-			headers: {
-				"X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
-			},
-			dataType: "json",
-			contentType: "application/json",
-			data: JSON.stringify({
-				thumbnail,
-			}),
-			success: function () {
-				toastr.success("Berhasil menambah rekomendasi nih :)", "Success!");
-				setTimeout(() => (window.location.href = "/"), 1500);
-			},
-			error: function (error) {
-				toastr.error("Wah ada error sama server nya nih :(", "Error!");
+			complete: function () {
+				$("button[type=submit]").removeClass("loading");
 			},
 		});
 	}
