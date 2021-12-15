@@ -5,7 +5,7 @@
 		</span>
 	</div>
 	<div class="flex-1 px-2 mx-2">
-		<div class="items-stretch hidden lg:flex">
+		<div class="items-stretch flex">
 			<a class="btn btn-primary btn-sm" href="{{ url('/') }}">
 				Beranda
 			</a>
