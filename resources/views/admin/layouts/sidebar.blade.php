@@ -8,10 +8,6 @@
 						<div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
 						Dashboard
 					</a>
-					<a class="nav-link" href="index.html">
-						<div class="sb-nav-link-icon"><i class="fas fa-user-shield"></i></div>
-						Admin
-					</a>
 					<a class="nav-link" href="{{ url('/logout') }}">
 						<div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
 						Logout
