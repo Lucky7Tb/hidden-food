@@ -20,7 +20,11 @@ class HiddenFoodController extends Controller
 			if ($request->get('coor')) {
 				$lastId = 0;
 				$centerCoor = Helpers::splitString($request->get('coor'), ',');
-				$places = DB::table('hidden_foods')->where("id", ">", $lastId)->limit(30)->get();
+				$places = DB::table('hidden_foods')
+					->where("id", ">", $lastId)
+					->where("status", "ACTIVE")
+					->limit(30)
+					->get();
 				if (count($places) > 0) {
 					foreach ($places as $place) {
 						$targetCoor = [$place->lat, $place->long];
@@ -32,7 +36,7 @@ class HiddenFoodController extends Controller
 					}
 				}
 			} else {
-				$hiddenFood = HiddenFood::orderBy("status", "desc")->get();
+				$hiddenFood = HiddenFood::where("status", "ACTIVE")->orderBy("status", "desc")->get();
 			}
 
 			return response()->json([
